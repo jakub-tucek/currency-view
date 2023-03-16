@@ -1,20 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchJSON } from "./ApiClient";
-import { CurrencyList, parseCurrencyResponse } from "./CurrencyService";
+import { CurrencyList } from "./CurrencyService";
 
 
 async function fetchCurrency(): Promise<CurrencyList> {
-  const currencyRaw = await fetchJSON<string>('https://www.cnb.cz/en/faq/Format-of-the-foreign-exchange-market-rates/');
-
-  return parseCurrencyResponse(currencyRaw)
+  return await fetchJSON<CurrencyList>("http://localhost:3000/currency");
 }
 
 export const useCurrency = () => {
- const currency = useQuery(['currency'], fetchCurrency);
+  const currency = useQuery(["currency"], fetchCurrency);
 
- return {
-   isPending: currency.isLoading || currency.isFetching,
-   error: currency.error,
-   data: currency.data
- }
-}
+  return {
+    isPending: currency.isLoading || currency.isFetching,
+    error: currency.error,
+    data: currency.data
+  };
+};
