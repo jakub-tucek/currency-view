@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchJSON } from "./ApiClient";
-import { CurrencyList } from "./CurrencyService";
+import { fetchCurrency } from "./CurrencyApiService";
 
-
-async function fetchCurrency(): Promise<CurrencyList> {
-  return await fetchJSON<CurrencyList>("http://localhost:3000/currency");
-}
 
 export const useCurrency = () => {
   const currency = useQuery(["currency"], fetchCurrency);

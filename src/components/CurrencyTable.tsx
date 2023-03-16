@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { CurrencyList } from "../service/CurrencyService";
 import React from "react";
+import { CurrencyList } from "../service/CurrencyService";
 import { CurrencyRow } from "./CurrencyRow";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const CurrencyTable: FC<Props> = ({ currencyList }: Props) => {
-  return <table className="table table-striped">\
+  return <table className="table table-striped" data-testid="currency-table">
     <thead>
     <tr>
       <th>Country</th>

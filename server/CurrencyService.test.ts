@@ -58,8 +58,8 @@ USA|dollar|1|USD|22.660`;
             "code": "USD",
             "country": "USA",
             "currency": "dollar",
-            "rate": 22.66,
-          },
+            "rate": 22.66
+          }
         ]
       );
     });

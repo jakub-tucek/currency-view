@@ -8,11 +8,11 @@ interface Props {
 export const CurrencyRow: FC<Props> = ({ currency }: Props) => {
   return (
     <tr>
-      <td>{currency.country}</td>
-      <td>{currency.currency}</td>
-      <td>{currency.amount}</td>
-      <td>{currency.code}</td>
-      <td>{currency.rate}</td>
+      <td data-testid="row-country">{currency.country}</td>
+      <td data-testid="row-currency">{currency.currency}</td>
+      <td data-testid="row-amount">{currency.amount}</td>
+      <td data-testid="row-code">{currency.code}</td>
+      <td data-testid="row-rate">{currency.rate}</td>
     </tr>
   );
 };

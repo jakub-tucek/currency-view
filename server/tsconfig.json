@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -15,12 +19,26 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals", "jest", "@testing-library/jest-dom"]
+    "types": [
+      "vitest/globals",
+      "jest",
+      "@testing-library/jest-dom"
+    ]
   },
-  "include": ["."],
-  "references": [{ "path": "./tsconfig.node.json" }],
-  "require": ["tsconfig-paths/register"],
+  "include": [
+    "."
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "require": [
+    "tsconfig-paths/register"
+  ],
   "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "require": [
+      "tsconfig-paths/register"
+    ]
   }
 }

@@ -1,26 +1,28 @@
 export type Currency = {
   country: string;
   currency: string;
-  amount: string;
+  amount: number;
   code: string;
   rate: number;
 }
 
 export type CurrencyList = Currency[];
 
-
-const CURRENCY_QUERY_PARAM = "currency";
-
-export function getCurrencyFromUrl(): string {
-  return new URLSearchParams(window.location.href).get(CURRENCY_QUERY_PARAM) || "";
+export interface ConversionResult {
+  currency: Currency;
+  result: number;
 }
 
-export function setCurrencyToUrl(currency: string) {
+export function convertCurrency(currencyList: CurrencyList, targetCurrencyCode: string, amount: number): ConversionResult {
+  const targetCurrency = currencyList.find(c => c.code.toLowerCase() === targetCurrencyCode.toLowerCase());
 
-}
+  if (!targetCurrency) {
+    throw new Error("Unrecognized currency");
+  }
 
-
-export function convertCurrency(currencyList: CurrencyList, currency: string) {
-  currencyList.find(c => c.country.toLowerCase() === currency.toLowerCase())
+  return {
+    currency: targetCurrency,
+    result: targetCurrency.rate / targetCurrency.amount * amount
+  };
 }
 

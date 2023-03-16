@@ -1,31 +1,40 @@
 import type { FC, FormEventHandler } from "react";
-import { getCurrencyFromUrl } from "../service/CurrencyService";
+import { SubmitButton } from "./SubmitButton";
+import { Currency } from "../service/CurrencyService";
 
 interface Props {
-  onCurrencyChange: (currency: string) => void;
-  currencyList: string[];
+  onCurrencyChange: (currency: CurrencyFormData) => void;
+  currencies: Currency[];
 }
 
-export const CurrencyForm: FC<Props> = ({ currencyList, onCurrencyChange }: Props) => {
+export interface CurrencyFormData {
+  amount: number;
+  targetCurrencyCode: string;
+}
+
+export const CurrencyForm: FC<Props> = ({ currencies, onCurrencyChange }: Props) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    console.log("aaa", { e });
+    e.preventDefault();
+    const data = new FormData(e.target as HTMLFormElement);
+    const formData = Object.fromEntries(data.entries()) as unknown as CurrencyFormData;
+
+    onCurrencyChange(formData);
   };
 
 
   return <div>
-
     <form onSubmit={handleSubmit}>
-      <label htmlFor="amount"> Currency: </label>
-      <input type="text" name="amount" />
+      <label htmlFor="amount"> Amount to convert to CZK: </label>
+      <input type="number" name="amount" className="form-control" required />
 
-      <label htmlFor="currency"></label>
-      <select name="currency">
-        {currencyList.map(c => (
-          <option id={c} key={c}>c</option>
+      <label htmlFor="targetCurrencyCode">Target currency:</label>
+      <select name="targetCurrencyCode" className="form-control" required>
+        {currencies.map((c) => (
+          <option id={c.code} key={c.code}>{c.currency} ({c.code})</option>
         ))}
       </select>
 
-      <button type="submit">Convert</button>
+      <SubmitButton type="submit" className="btn btn-primary">Convert</SubmitButton>
     </form>
 
   </div>;

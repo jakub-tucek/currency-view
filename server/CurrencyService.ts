@@ -1,12 +1,4 @@
-export type Currency = {
-  country: string;
-  currency: string;
-  amount: string;
-  code: string;
-  rate: number;
-}
-
-export type CurrencyList = Currency[];
+import type { CurrencyList } from "../src/service/CurrencyService";
 
 export function parseCurrencyResponse(response: string): CurrencyList {
   return response.split("\n").slice(2).map(responseLine => {
@@ -20,7 +12,7 @@ export function parseCurrencyResponse(response: string): CurrencyList {
     return {
       country,
       currency,
-      amount,
+      amount: Number(amount),
       code,
       rate: Number(rate)
     };
