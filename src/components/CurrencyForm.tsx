@@ -30,7 +30,7 @@ export const CurrencyForm: FC<Props> = ({ currencies, onCurrencyChange }: Props)
       <label htmlFor="targetCurrencyCode">Target currency:</label>
       <select name="targetCurrencyCode" className="form-control" required>
         {currencies.map((c) => (
-          <option id={c.code} key={c.code}>{c.currency} ({c.code})</option>
+          <option id={c.code} key={c.code} value={c.code}>{c.currency} ({c.code})</option>
         ))}
       </select>
 
